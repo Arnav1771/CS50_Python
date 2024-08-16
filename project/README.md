@@ -2,49 +2,36 @@
 #### Video Demo : https://youtu.be/sRM0-i8bbcA
 #### Description
 
-Overview
-The Pixated Camera Demo is a Python project that captures video from a webcam and applies a pixelation effect to the video feed in real-time. The pixelation effect is achieved by converting the video frames into a dotted image format, where each dot represents a pixel block of the original frame. This project demonstrates the use of OpenCV for video capture and manipulation, as well as the Python Imaging Library (PIL) for image processing.
+# Pixated Camera
 
-Files
-camera.py
-This is the main script of the project. It contains the following key components:
+## Overview
 
-Imports: The script imports necessary libraries including OpenCV (cv2), NumPy (np), and PIL (Image, ImageDraw).
+Pixated Camera is a Python project that captures video from a webcam and applies a pixelation effect to the video feed. The pixelation effect is achieved by converting the video frames into a dotted image format. This project uses the OpenCV library for video capture and the Pillow library for image processing.
 
-Constants:
+## Files
 
-DOT_SIZE: Defines the size of each dot in the pixelated image.
-RADIUS: Defines the radius of each dot, calculated as half of DOT_SIZE.
-Window Setup:
+### `project.py`
 
-cv2.namedWindow("Pixated Camera"): Creates a window named "Pixated Camera" to display the video feed.
-vc = cv2.VideoCapture(0): Initializes video capture from the default webcam (usually indexed as 0).
-Frame Capture:
+This is the main script of the project. It contains the following functions:
 
-The script attempts to capture the first frame from the webcam to ensure it is working correctly.
-convert Function:
+- `initialize_camera()`: Initializes the webcam and attempts to capture the first frame. It returns the video capture object, a boolean indicating if the capture was successful, and the first frame.
+- `convert(source_img)`: Converts a source image into a dotted image. It creates a new image with dots of a specified size and color based on the source image.
+- `display_frames(vc, rval, frame)`: Continuously captures frames from the webcam, applies the pixelation effect using the `convert` function, and displays the processed frames in a window. The loop exits when the ESC key is pressed.
+- `main()`: The main function that initializes the camera and starts the frame display loop if the camera initialization is successful.
 
-This function takes a source image (source_img) and converts it into a pixelated image.
-It creates a new image (dotted_img) with the same dimensions as the source image.
-It iterates over the source image in blocks of size DOT_SIZE and draws a dot for each block using the average color of the block.
-The color space is converted from BGR (used by OpenCV) to RGB (used by PIL) and back to BGR after processing.
-Main Loop:
+### Design Choices
 
-The script enters a loop where it continuously captures frames from the webcam.
-Each frame is processed using the convert function to apply the pixelation effect.
-The processed frame is displayed in the "Pixated Camera" window.
-The loop exits when the ESC key (key code 27) is pressed.
-Cleanup:
+1. **Function Decomposition**: The code is divided into multiple functions to enhance readability and maintainability. Each function has a single responsibility, making the code easier to understand and test.
+2. **Use of Libraries**: OpenCV is used for video capture due to its efficiency and ease of use. Pillow is used for image processing because it provides a simple interface for drawing shapes and manipulating images.
+3. **Pixelation Effect**: The pixelation effect is achieved by drawing ellipses on a blank image based on the colors of the source image. This approach was chosen for its simplicity and visual appeal.
 
-The script destroys the window created for displaying the video feed when the loop exits.
-Design Choices
-Pixelation Effect
-The pixelation effect was chosen to demonstrate basic image processing techniques using Python. The effect is achieved by dividing the image into blocks and representing each block with a single dot of the average color. This approach simplifies the image while retaining the overall structure and colors.
+## Unit Tests
 
-Libraries
-OpenCV: Used for video capture and display. OpenCV is a powerful library for computer vision tasks and provides efficient methods for handling video streams.
-PIL (Pillow): Used for image processing. PIL provides a simple and intuitive interface for manipulating images, making it suitable for tasks like drawing shapes and converting color spaces.
+Each function in the `camera.py` script is accompanied by unit tests to ensure correctness. The tests cover various scenarios, including successful and unsuccessful camera initialization, image conversion, and frame display.
 
-Performance Considerations
-The script processes each frame in real-time, which can be computationally intensive. The choice of DOT_SIZE affects the performance and visual quality of the pixelation effect. A larger DOT_SIZE reduces the number of dots to be drawn, improving performance but reducing detail. Conversely, a smaller DOT_SIZE increases detail but may impact performance.
+## Running the Project
 
+To run the project, execute the `camera.py` script. Ensure that you have a webcam connected and the required libraries installed.
+
+```sh
+python3 camera.py
