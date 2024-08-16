@@ -1,4 +1,4 @@
-{
+foods = {
     "Baja Taco": 4.25,
     "Burrito": 7.50,
     "Bowl": 8.50,
