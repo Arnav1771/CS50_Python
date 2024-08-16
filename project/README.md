@@ -1,4 +1,7 @@
-Pixated Camera Demo
+# Pixalated Camera Demo
+#### Video Demo : https://youtu.be/sRM0-i8bbcA
+#### Description
+
 Overview
 The Pixated Camera Demo is a Python project that captures video from a webcam and applies a pixelation effect to the video feed in real-time. The pixelation effect is achieved by converting the video frames into a dotted image format, where each dot represents a pixel block of the original frame. This project demonstrates the use of OpenCV for video capture and manipulation, as well as the Python Imaging Library (PIL) for image processing.
 
