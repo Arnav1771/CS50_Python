@@ -1,3 +1,13 @@
+'''
+Pixated Camera Demo
+Name : Arnav Bhargava
+Github : https://github.com/Arnav1771
+edX Username : arnavbh_7
+City : Delhi
+Country : India
+#Date : 08/17/2024
+'''
+
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw
